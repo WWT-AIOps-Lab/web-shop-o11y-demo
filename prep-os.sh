@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Parse command-line arguments
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -u|--url)
+      export PUBLIC_APP_URL="$2"
+      shift
+      shift
+      ;;
+    *)
+      echo "Unknown option: $1"
+      return
+      ;;
+  esac
+done
+
 # Check for operating system type
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Check for Linux distribution/flavor
@@ -16,6 +33,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         systemctl start docker
         docker --version
         docker run hello-world
+        . ./up.sh
+        setup/add_products.sh default
       fi
   elif [ -f /etc/lsb-release ]; then
       . /etc/lsb-release
