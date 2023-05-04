@@ -34,7 +34,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         docker --version
         docker run hello-world
         . ./up.sh
-        setup/add_products.sh default
+        ./setup/add_products.sh default
+        docker ps -a
       fi
   elif [ -f /etc/lsb-release ]; then
       . /etc/lsb-release
