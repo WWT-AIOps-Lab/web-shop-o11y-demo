@@ -74,7 +74,8 @@ eval_args(){
 if ! [ -z "$*" ]
 then
   eval_args $*
-  exit 0
+#  exit 0
+  return
 fi
 
 usage
