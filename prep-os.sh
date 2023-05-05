@@ -37,7 +37,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         . ./setup/add_products.sh default
         docker ps -a
       elif [[ "$NAME" == "Amazon Linux" ]]; then
-        echo "This is a Amazon Linux system"
+        
+      else
+        echo "Not supported"
+      fi
   elif [ -f /etc/lsb-release ]; then
       . /etc/lsb-release
       echo "This is a $DISTRIB_ID ($DISTRIB_RELEASE) system"
