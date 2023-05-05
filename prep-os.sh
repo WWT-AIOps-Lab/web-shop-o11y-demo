@@ -37,7 +37,17 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         . ./setup/add_products.sh default
         docker ps -a
       elif [[ "$NAME" == "Amazon Linux" ]]; then
-        
+        yum -y install git-all
+        git --version
+        yum install -y yum-utils
+        sudo yum install docker
+        wget https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) 
+        mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose
+        chmod -v +x /usr/local/bin/docker-compose
+        systemctl enable docker
+        systemctl start docker
+        docker --version
+        docker run hello-world
       else
         echo "Not supported"
       fi
